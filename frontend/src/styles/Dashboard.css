@@ -1,0 +1,58 @@
+/* styles.css */
+
+/* General container for the charts */
+.charts-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 20px;
+}
+
+/* Individual chart styling */
+.chart {
+    width: 45%;
+    height: auto;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    background-color: #fff;
+}
+
+/* Dashboard data container */
+.dashboard-data {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Individual data item styling */
+.dashboard-data p {
+    margin: 10px 0;
+    font-size: 16px;
+    color: #333;
+}
+
+/* Loading message styling */
+.loading {
+    font-size: 18px;
+    color: #777;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Specific styles for total price, total requests, and success rate */
+.total-price {
+    color: #ff5722;
+}
+
+.total-requests {
+    color: #2196f3;
+}
+
+.success-rate {
+    color: #4caf50;
+}
