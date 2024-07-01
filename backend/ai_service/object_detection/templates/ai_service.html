@@ -1,0 +1,115 @@
+{% extends "layout.html" %} 
+{% block title %}admin - service{% endblock %} 
+
+{% block content %}
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Name</th>
+      <th scope="col">Description</th>
+      <th scope="col">Monthly Price</th>
+      <th scope="col">Yearly Price</th>
+      <th scope="col">Enterprise Price per Request</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for service in services %}
+    <tr>
+      <td>{{service.id_service}}</td>
+      <td>{{service.name}}</td>
+      <td>{{service.description}}</td>
+      <td>{{service.url}}</td>
+      <td>{{service.monthly_price}}</td>
+      <td>{{service.yearly_price}}</td>
+      <td>{{service.enterprise_price_per_request}}</td>
+      <td>    
+        <form action="{% url 'admin_ai_service_delete' %}" method="POST">
+        <input type="hidden" name="id_service" value="{{ service.id_service }}">
+        <button type="submit" class="btn btn-danger">Delete</button>
+      </form></td>
+    </tr>
+
+    {% endfor %}
+  </tbody>
+</table>
+<div style="margin: 20px;">
+    <br/><br/><br/>
+  <form method="POST" action="{% url 'admin_ai_service' %}">
+    <div class="form-label" >Add new service</div>
+    <div class="mb-3">
+      <label for="id" class="form-label">Id</label>
+      <input
+        required
+        type="number"
+        class="form-control"
+        id="id"
+        name="id_service"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="id1" class="form-label">Name</label>
+      <input
+      required
+        type="text"
+        class="form-control"
+        id="id1"
+        name="name"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="id2" class="form-label">Description</label>
+      <input
+      required
+        type="text"
+        class="form-control"
+        id="id2"
+        name="description"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="id8" class="form-label">Url</label>
+      <input
+      required
+        type="text"
+        class="form-control"
+        id="id8"
+        name="url"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="id3" class="form-label">Monthly Price</label>
+      <input
+      required
+        type="number"
+        class="form-control"
+        id="id3"
+        name="monthly_price"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="id4" class="form-label">Yearly Price</label>
+      <input
+      required
+        type="number"
+        class="form-control"
+        id="id4"
+        name="yearly_price"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="id5" class="form-label">Enterprise Price per Request</label>
+      <input
+      required
+        type="number"
+        class="form-control"
+        id="id5"
+        name="enterprise_price_per_request"
+      />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+
+{% endblock %}

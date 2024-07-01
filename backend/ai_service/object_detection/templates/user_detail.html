@@ -1,0 +1,93 @@
+{% extends "layout.html" %} 
+{% block title %}admin - users{% endblock %} 
+
+{% block content %}
+<br>
+<h2>Subscribed Services</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">service</th>
+      <th scope="col">date subscribed</th>
+      <th scope="col">date ended</th>
+      <th scope="col">type</th>
+      <th scope="col">total requests</th>
+      <th scope="col">total price</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for detail in billing_details %}
+    <tr>
+      <td>{{ detail.service }}</td>
+      <td>{{ detail.date_subscribed }}</td>
+      <td>{{ detail.date_ended }}</td>
+      <td>{{ detail.type }}</td>
+      <td>{{ detail.total_requests }}</td>
+      <td>{{ detail.total_price }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<div>
+    <p>Total price: {{ total_bill }}</p>
+</div>
+
+<br>
+<h2>Pending Services</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">service</th>
+      <th scope="col">type</th>
+      <th scope="col">action</th>
+      <th scope="col">action</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    {% for detail in pending %}
+    <tr>
+      <td>{{ detail.service }}</td>
+      <td>{{ detail.type }}</td>
+      <td>    
+        <form action="{% url 'admin_user_detail_approve' %}" method="POST">
+        <input type="hidden" name="service_name" value="{{ detail.service.name }}">
+        <input type="hidden" name="user" value="{{ user.username }}">
+        <button type="submit" class="btn btn-primary">Approve</button>
+      </form></td> 
+      <td>    
+        <form action="{% url 'admin_user_detail_delete' %}" method="POST">
+        <input type="hidden" name="service_name" value="{{ detail.service.name }}">
+        <input type="hidden" name="user" value="{{ user.username }}">
+        <button type="submit" class="btn btn-danger">Delete</button>
+      </form></td>    
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<br>
+<h2>Request History</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">service</th>
+      <th scope="col">subscription</th>
+      <th scope="col">time</th>
+      <th scope="col">status</th>
+      <th scope="col">processing_time</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for entry in history %}
+    <tr>
+      <td>{{ entry.service }}</td>
+      <td>{{ entry.subscription }}</td>  
+      <td>{{ entry.request_time }}</td>  
+      <td>{{ entry.status }}</td>  
+      <td>{{ entry.processing_time }}</td>  
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
